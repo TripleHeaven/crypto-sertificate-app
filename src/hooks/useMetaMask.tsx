@@ -14,7 +14,6 @@ export const MetaMaskContext = createContext<any>(null)
 export const MetaMaskProvider: React.FC = ({ children }) => {
   const { activate, account, library, connector, active, deactivate } =
     useWeb3React()
-
   const [isActive, setIsActive] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
