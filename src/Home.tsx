@@ -7,6 +7,7 @@ import {
   CardMedia,
   CircularProgress,
   Skeleton,
+  TextField,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -43,31 +44,47 @@ function Home() {
     }
   };
 
+  const handleReset = () => {
+    setCertificateURI(undefined);
+    setSertificateURIResult(undefined);
+    setName("");
+  };
+
+  const [name, setName] = useState("");
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <Box>
           <Typography variant="h5">Главное меню</Typography>
 
-          <Box display="flex" gap={15}>
-            <Card sx={{ width: 345 }}>
+          <Box display="flex" gap={15} mt={2}>
+            <Card sx={{ width: 345, height: 315 }}>
               {certificateURILoading && (
                 <Box
                   display="flex"
+                  flexDirection="column"
                   justifyContent="center"
                   alignItems="center"
                   overflow="hidden"
+                  width="100%"
+                  height="100%"
                 >
-                  <CircularProgress />{" "}
+                  <Box>
+                    <CircularProgress />
+                  </Box>
                 </Box>
               )}
-              {certificateURIResult ? (
+              {certificateURIResult && (
                 <>
                   <CardMedia
                     component="img"
                     height="140"
                     image={certificateURIResult.image}
-                    alt="green iguana"
+                    alt="фото сертификата"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -78,41 +95,41 @@ function Home() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button
-                      size="small"
-                      onClick={() => getCertificateURI(account, "Math")}
-                    >
-                      Share
+                    <Button size="small" onClick={() => handleReset()}>
+                      Загрузить другой сертификат
                     </Button>
-                    <Button size="small">Learn More</Button>
                   </CardActions>
                 </>
-              ) : (
+              )}
+
+              {!certificateURIResult && !certificateURILoading && (
                 <>
                   <CardMedia
                     component="img"
                     height="140"
-                    src={"./imgs/first.jpg"}
-                    alt="green iguana"
+                    src="./imgs/first.jpg"
+                    alt="green iffguana"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      Lizard
+                      Загрузка сертификата
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Lizards are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
-                      Antarctica
+                      <TextField
+                        variant="filled"
+                        value={name}
+                        onChange={handleChange}
+                        label="Название курса"
+                      />
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button
                       size="small"
-                      onClick={() => getCertificateURI(account, "Math")}
+                      onClick={() => getCertificateURI(account, name)}
                     >
-                      Share
+                      Загрузить сертификат
                     </Button>
-                    <Button size="small">Learn More</Button>
                   </CardActions>
                 </>
               )}
