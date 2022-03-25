@@ -1,14 +1,15 @@
-import { Redirect, Route, Switch } from 'react-router-dom'
-import { ROUTES } from './routes'
-import Home from './Home'
+import { Redirect, Route, Switch } from "react-router-dom";
+import { ROUTES } from "./routes";
+import Home from "./Home";
+import { PrivateRoute } from "./fragments/PrivateRoute";
 
 function Main() {
   return (
     <Switch>
-      <Route path={ROUTES.HOME} component={Home} />
+      <PrivateRoute path={ROUTES.HOME} component={Home} />
       <Redirect to={ROUTES.HOME} />
     </Switch>
-  )
+  );
 }
 
-export default Main
+export default Main;

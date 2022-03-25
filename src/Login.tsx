@@ -1,13 +1,13 @@
-import './App.css'
-import { Box, Button, Typography } from '@mui/material'
-import { useMetaMask } from './hooks/useMetaMask'
-import { Redirect } from 'react-router-dom'
-import { ROUTES } from './routes'
+import "./App.css";
+import { Box, Button, Typography } from "@mui/material";
+import { useMetaMask } from "./hooks/useMetaMask";
+import { Redirect } from "react-router-dom";
+import { ROUTES } from "./routes";
 
 function Login() {
-  const { connect, disconnect, isActive, account } = useMetaMask()
+  const { connect, disconnect, isActive, account } = useMetaMask();
   if (isActive) {
-    return <Redirect to={ROUTES.HOME} />
+    return <Redirect to={ROUTES.HOME} />;
   }
 
   return (
@@ -33,7 +33,7 @@ function Login() {
         {isActive && <Box pt={1}>Ваш аккаунт {account}</Box>}
       </header>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
