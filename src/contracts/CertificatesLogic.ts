@@ -79,7 +79,6 @@ export type CertificatesLogicMethodNames =
   | 'addDescription'
   | 'addLearner'
   | 'certificatesId'
-  | 'certificatesInfo'
   | 'courses'
   | 'coursesList'
   | 'createCertificate'
@@ -102,15 +101,7 @@ export interface OwnershipTransferredEventEmittedResponse {
   previousOwner: string;
   newOwner: string;
 }
-export interface CertificatesInfoResponse {
-  courseName: string;
-  beginningDate: string;
-  receivingDate: string;
-  score: string;
-  info: string;
-}
 export interface CertificatedescriptionResponse {
-  courseName: string;
   beginningDate: string;
   receivingDate: string;
   score: string;
@@ -173,16 +164,6 @@ export interface CertificatesLogic {
    * Constant: true
    * StateMutability: view
    * Type: function
-   * @param parameter0 Type: address, Indexed: false
-   */
-  certificatesInfo(
-    parameter0: string
-  ): MethodConstantReturnContext<CertificatesInfoResponse>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
    * @param parameter0 Type: string, Indexed: false
    */
   courses(parameter0: string): MethodConstantReturnContext<boolean>;
@@ -222,9 +203,11 @@ export interface CertificatesLogic {
    * StateMutability: view
    * Type: function
    * @param _account Type: address, Indexed: false
+   * @param _courseName Type: string, Indexed: false
    */
   getCertificateInfo(
-    _account: string
+    _account: string,
+    _courseName: string
   ): MethodConstantReturnContext<CertificatedescriptionResponse>;
   /**
    * Payable: false
