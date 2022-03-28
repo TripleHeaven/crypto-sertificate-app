@@ -32,9 +32,9 @@ function Home() {
   const [certificateURILoading, setCertificateURILoading] = useState(false);
   const [certificateURIResult, setSertificateURIResult] = useState<any>();
 
-  // const [NFTT, setNFTT] = useState<any>();
-  // const [NFTTLoading, setNFTTLoading] = useState(false);
-  // const [NFTTResult, setNFTTResult] = useState<any>();
+  const [NFTT, setNFTT] = useState<any>();
+  const [NFTTLoading, setNFTTLoading] = useState(false);
+  const [NFTTResult, setNFTTResult] = useState<any>();
 
   const [certInfo, setcertInfo] = useState<any>();
   const [certInfoLoading, setCertInfoLoading] = useState(false);
@@ -66,15 +66,15 @@ function Home() {
     }
   };
 
-  // const getCertificateNFTT = async (acc: string, courseName: string) => {
-  //   {
-  //     setNFTTLoading(true);
-  //     const res = await CertficateContract.viewCertificateId(acc, courseName);
-  //     setNFTTResult(res);
+  const getCertificateNFTT = async (acc: string, courseName: string) => {
+    {
+      setNFTTLoading(true);
+      const res = await CertficateContract.viewCertificateId(acc, courseName);
+      setNFTTResult(res);
 
-  //     setNFTTLoading(false);
-  //   }
-  // };
+      setNFTTLoading(false);
+    }
+  };
 
   const getCertificateCertInfo = async (acc: string, courseName: string) => {
     {
@@ -82,7 +82,6 @@ function Home() {
       const res = await CertficateContract.getCertificateInfo(acc, courseName);
       setCertInfoResult(res);
       setCertInfoLoading(false);
-      // setCertInfoResult()
     }
   };
 
@@ -96,6 +95,11 @@ function Home() {
     setCertInfoResult(undefined);
     setcertInfo(undefined);
     setNameCertInfo("");
+  };
+
+  const handleResetNFTT = () => {
+    setNFTTResult(undefined);
+    setNameNFT("");
   };
 
   return (
@@ -217,27 +221,15 @@ function Home() {
 
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      NFT Token
+                      NFT токен
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {NFTTResult}
+                      123456789123456790.12345
                     </Typography>
                   </CardContent>
                   <Box mt="auto">
-                    <Button
-                      size="small"
-                      variant="contained"
-                      onClick={() =>
-                        window.open(certificateURIResult.image, "_blank")
-                      }
-                    >
-                      Скачать сертификат
-                    </Button>
-                    <Button
-                      size="small"
-                      onClick={() => handleResetCertificateURI()}
-                    >
-                      Загрузить другой сертификат
+                    <Button size="small" onClick={() => handleResetNFTT()}>
+                      Загрузить другой NFT токен
                     </Button>
                   </Box>
                 </>
@@ -253,7 +245,7 @@ function Home() {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      Загрузка NFT сертификата
+                      Загрузка NFT токена сертификата
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       <TextField
@@ -269,7 +261,7 @@ function Home() {
                       size="small"
                       onClick={() => getCertificateNFTT(account, nameNFT)}
                     >
-                      Загрузить NFT
+                      Загрузить NFT токен
                     </Button>
                   </CardActions>
                 </>
