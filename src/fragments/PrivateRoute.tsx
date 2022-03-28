@@ -9,7 +9,6 @@ const PrivateRouteComponent = (props: PrivateRouteProps) => {
   if (!isActive || !account) {
     return <Redirect to={ROUTES.LOGIN} />;
   }
-  console.log("fff ", isActive + " " + account);
 
   return <Route {...props} />;
 };
